@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --amber: #f59e0b;
+  --amber-dim: rgba(245,158,11,0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Georgia', serif;
+  transition: background 0.4s, color 0.3s;
+}
+
+input, textarea, select {
+  font-family: system-ui, sans-serif;
+  transition: border-color 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--amber) !important;
+}
+
+a { text-decoration: none; }
+
+::selection {
+  background: rgba(245,158,11,0.25);
+}
