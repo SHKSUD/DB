@@ -4,7 +4,7 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { ThemeProvider, useTheme } from '@/components/ThemeProvider'
 import Navbar from '@/components/Navbar'
-import { Activity, Brain, Microscope, Beaker, GradCap, Shield, Check } from '@/components/Icons'
+import { Activity, Check } from '@/components/Icons'
 import { CONDITIONS, SERVICES } from '@/data/conditions'
 
 const NeuralCanvas = dynamic(() => import('@/components/NeuralCanvas'), { ssr: false })
@@ -48,6 +48,14 @@ function ServiceCard({ title, desc, tag }: any) {
 
 function HomePage() {
   const { t } = useTheme()
+
+  const PROFILE = [
+    { label: 'QUALIFICATIONS', val: 'MBBS, MD (Pharmacology) AIIMS, PGP Diabetology (USA), MBA (UK)' },
+    { label: 'HOSPITAL',       val: 'Medicare Hospital' },
+    { label: 'LOCATION',       val: 'Marol Naka, next to HP Petrol Pump' },
+    { label: 'MODE',           val: 'Video · In-person · Report review' },
+  ]
+
   return (
     <div style={{ background: t.BG, color: t.TXT, minHeight: '100vh', position: 'relative', overflowX: 'hidden', fontFamily: 'system-ui,sans-serif', transition: 'background .45s, color .3s' }}>
       <NeuralCanvas alpha={t.CANVASALPHA} />
@@ -60,14 +68,17 @@ function HomePage() {
             <div>
               <div style={{ ...t.mono, fontSize: 10, color: t.MONOCOLOR, letterSpacing: '0.3em', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span style={{ display: 'inline-block', width: 28, height: 1, background: t.A }} />
-                AIIMS NEW DELHI · MD CLINICAL PHARMACOLOGY
+                MEDICARE HOSPITAL · MAROL NAKA
               </div>
-              <h1 style={{ fontSize: 'clamp(48px,5.5vw,76px)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.04em', marginBottom: 8, fontFamily: 'Georgia,serif' }}>
+              <h1 style={{ fontSize: 'clamp(40px,5vw,68px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: 8, fontFamily: 'Georgia,serif' }}>
                 <span style={{ color: t.TXT, display: 'block' }}>Consultant</span>
                 <span style={{ color: t.A, display: 'block' }}>Physician &</span>
                 <span style={{ color: t.TXT, display: 'block' }}>Diabetologist.</span>
               </h1>
-              <p style={{ fontSize: 15, color: t.TXT2, lineHeight: 1.85, maxWidth: 460, margin: '22px 0 42px', fontFamily: 'Georgia,serif', fontStyle: 'italic' }}>
+              <p style={{ fontSize: 13, color: t.MONOCOLOR, margin: '14px 0 6px', fontFamily: 'monospace', letterSpacing: '0.06em' }}>
+                MBBS · MD Pharmacology (AIIMS) · PGP Diabetology (USA) · MBA (UK)
+              </p>
+              <p style={{ fontSize: 15, color: t.TXT2, lineHeight: 1.8, maxWidth: 460, margin: '16px 0 40px', fontFamily: 'Georgia,serif', fontStyle: 'italic' }}>
                 AIIMS-trained specialist helping patients control diabetes, manage metabolic disorders, and navigate complex internal medicine — with evidence, precision, and care.
               </p>
               <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
@@ -75,20 +86,22 @@ function HomePage() {
                 <a href="#conditions" style={{ ...t.mono, padding: '14px 26px', background: 'transparent', border: `1px solid ${t.BORDER}`, color: t.TXT2, fontSize: 11, letterSpacing: '0.14em', borderRadius: 2, textDecoration: 'none' }}>WHO SHOULD CONSULT?</a>
               </div>
             </div>
+
+            {/* Profile card */}
             <div style={{ border: `1px solid ${t.BORDER}`, borderRadius: 8, background: t.BG2, padding: 40, position: 'relative', transition: 'background .4s' }}>
-              <div style={{ ...t.mono, fontSize: 9, color: t.MONOCOLOR, letterSpacing: '0.1em', position: 'absolute', top: 16, right: 16 }}>SECURE PROFILE</div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18 }}>
-                <div style={{ width: 90, height: 90, borderRadius: '50%', border: '2px solid rgba(245,158,11,0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(245,158,11,0.07)' }}>
-                  <span style={{ fontSize: 24, fontFamily: 'Georgia,serif', fontWeight: 700, color: t.A }}>DD</span>
+              <div style={{ ...t.mono, fontSize: 9, color: t.MONOCOLOR, letterSpacing: '0.1em', position: 'absolute', top: 16, right: 16 }}>MEDICARE HOSPITAL</div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
+                <div style={{ width: 80, height: 80, borderRadius: '50%', border: `2px solid rgba(245,158,11,0.35)`, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(245,158,11,0.07)' }}>
+                  <span style={{ fontSize: 22, fontFamily: 'Georgia,serif', fontWeight: 700, color: t.A }}>DD</span>
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: 21, fontWeight: 800, color: t.TXT, letterSpacing: '-0.02em', fontFamily: 'Georgia,serif' }}>Dr. Debashis Das</div>
-                  <div style={{ ...t.mono, fontSize: 10, color: t.MONOCOLOR, letterSpacing: '0.13em', marginTop: 6 }}>MD · CONSULTANT PHYSICIAN & DIABETOLOGIST</div>
+                  <div style={{ fontSize: 20, fontWeight: 800, color: t.TXT, letterSpacing: '-0.02em', fontFamily: 'Georgia,serif' }}>Dr. Debashis Das</div>
+                  <div style={{ ...t.mono, fontSize: 9, color: t.MONOCOLOR, letterSpacing: '0.1em', marginTop: 5 }}>CONSULTANT PHYSICIAN & DIABETOLOGIST</div>
                 </div>
-                {[{ label: 'INSTITUTION', val: 'AIIMS New Delhi' }, { label: 'SPECIALITY', val: 'Diabetology & Internal Medicine' }, { label: 'PHARMACOLOGY', val: 'Clinical Pharmacology (MD)' }, { label: 'MODE', val: 'Video · In-person · Report review' }].map(({ label, val }) => (
-                  <div key={label} style={{ width: '100%', display: 'flex', justifyContent: 'space-between', borderBottom: `1px solid ${t.BORDER}`, paddingBottom: 10 }}>
-                    <span style={{ ...t.mono, fontSize: 9, color: t.MONOMUTED, letterSpacing: '0.14em' }}>{label}</span>
-                    <span style={{ fontSize: 12, color: t.TXT2, textAlign: 'right', maxWidth: '55%' }}>{val}</span>
+                {PROFILE.map(({ label, val }) => (
+                  <div key={label} style={{ width: '100%', display: 'flex', justifyContent: 'space-between', gap: 16, borderBottom: `1px solid ${t.BORDER}`, paddingBottom: 10 }}>
+                    <span style={{ ...t.mono, fontSize: 9, color: t.MONOMUTED, letterSpacing: '0.12em', flexShrink: 0 }}>{label}</span>
+                    <span style={{ fontSize: 11, color: t.TXT2, textAlign: 'right' }}>{val}</span>
                   </div>
                 ))}
               </div>
@@ -99,10 +112,15 @@ function HomePage() {
         {/* STATS */}
         <section style={{ borderTop: `1px solid ${t.BORDER}`, borderBottom: `1px solid ${t.BORDER}`, background: t.BG3 }}>
           <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1px', background: t.BORDER }}>
-            {[{ n: '12+', l: 'Years in Practice' }, { n: 'AIIMS', l: 'Institution' }, { n: '4.9 ★', l: 'Patient Rating' }, { n: '500+', l: 'Cases Resolved' }].map(({ n, l }) => (
+            {[
+              { n: 'AIIMS', l: 'MD Pharmacology' },
+              { n: 'PGP',   l: 'Diabetology USA' },
+              { n: 'MBA',   l: 'United Kingdom' },
+              { n: '500+',  l: 'Cases Resolved' },
+            ].map(({ n, l }) => (
               <div key={l} style={{ padding: '36px 24px', background: t.BG, textAlign: 'center', transition: 'background .4s' }}>
-                <div style={{ fontSize: 30, fontWeight: 900, color: t.A, letterSpacing: '-0.03em', fontFamily: 'Georgia,serif' }}>{n}</div>
-                <div style={{ ...t.mono, fontSize: 9, color: t.MONOMUTED, letterSpacing: '0.15em', marginTop: 6 }}>{l.toUpperCase()}</div>
+                <div style={{ fontSize: 28, fontWeight: 900, color: t.A, letterSpacing: '-0.03em', fontFamily: 'Georgia,serif' }}>{n}</div>
+                <div style={{ ...t.mono, fontSize: 9, color: t.MONOMUTED, letterSpacing: '0.13em', marginTop: 6 }}>{l.toUpperCase()}</div>
               </div>
             ))}
           </div>
@@ -135,7 +153,9 @@ function HomePage() {
         <section id="services" style={{ padding: '80px 5%', borderTop: `1px solid ${t.BORDER}`, background: t.BG3, transition: 'background .4s' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <div style={{ ...t.mono, fontSize: 9, color: t.MONOCOLOR, letterSpacing: '0.3em', marginBottom: 12 }}>// CLINICAL PORTFOLIO</div>
-            <h2 style={{ fontSize: 38, fontWeight: 900, letterSpacing: '-0.04em', color: t.TXT, fontFamily: 'Georgia,serif', marginBottom: 48 }}>Services & <span style={{ color: t.A }}>Expertise</span></h2>
+            <h2 style={{ fontSize: 38, fontWeight: 900, letterSpacing: '-0.04em', color: t.TXT, fontFamily: 'Georgia,serif', marginBottom: 48 }}>
+              Services & <span style={{ color: t.A }}>Expertise</span>
+            </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1px', background: t.BORDER }}>
               {SERVICES.map((s, i) => <ServiceCard key={i} {...s} />)}
             </div>
@@ -153,8 +173,12 @@ function HomePage() {
               <div style={{ ...t.mono, fontSize: 9, color: t.MONOCOLOR, letterSpacing: '0.1em', border: `1px solid ${t.BORDER}`, padding: '6px 14px', borderRadius: 2 }}>POWERED BY SANITY CMS</div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16 }}>
-              {[{ tag: 'DIABETES', title: 'Understanding HbA1c: what your number really means', date: '12 Mar 2025', read: '4 min' }, { tag: 'PHARMACOLOGY', title: 'Metformin in 2025: what the new clinical evidence tells us', date: '28 Feb 2025', read: '6 min' }, { tag: 'NUTRITION', title: 'Glycaemic index vs glycaemic load — a practical guide', date: '14 Feb 2025', read: '5 min' }].map(({ tag, title, date, read }) => (
-                <Link key={title} href="/articles" style={{ padding: '26px 22px', border: `1px solid ${t.BORDER}`, background: t.BG2, borderRadius: 8, display: 'flex', flexDirection: 'column', gap: 12, cursor: 'pointer', textDecoration: 'none', transition: 'border-color .2s' }}>
+              {[
+                { tag: 'DIABETES',     title: 'Understanding HbA1c: what your number really means',          date: '12 Mar 2025', read: '4 min' },
+                { tag: 'PHARMACOLOGY', title: 'Metformin in 2025: what the new clinical evidence tells us',  date: '28 Feb 2025', read: '6 min' },
+                { tag: 'NUTRITION',    title: 'Glycaemic index vs glycaemic load — a practical guide',       date: '14 Feb 2025', read: '5 min' },
+              ].map(({ tag, title, date, read }) => (
+                <Link key={title} href="/articles" style={{ padding: '26px 22px', border: `1px solid ${t.BORDER}`, background: t.BG2, borderRadius: 8, display: 'flex', flexDirection: 'column', gap: 12, cursor: 'pointer', textDecoration: 'none' }}>
                   <span style={{ ...t.mono, fontSize: 9, background: 'rgba(245,158,11,0.1)', color: t.A, padding: '3px 10px', borderRadius: 20, letterSpacing: '0.1em', alignSelf: 'flex-start' }}>{tag}</span>
                   <div style={{ fontSize: 15, fontWeight: 700, color: t.TXT, lineHeight: 1.5, fontFamily: 'Georgia,serif' }}>{title}</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'auto' }}>
@@ -175,19 +199,28 @@ function HomePage() {
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', flexWrap: 'wrap', gap: 40, marginBottom: 40 }}>
               <div>
-                <div style={{ fontSize: 18, fontWeight: 800, color: t.TXT, fontFamily: 'Georgia,serif', marginBottom: 6 }}>Dr. Debashis Das</div>
-                <div style={{ ...t.mono, fontSize: 9, color: t.A, letterSpacing: '0.1em' }}>CONSULTANT PHYSICIAN & DIABETOLOGIST</div>
-                <div style={{ ...t.mono, fontSize: 9, color: t.MONOMUTED, letterSpacing: '0.08em', marginTop: 4 }}>AIIMS NEW DELHI</div>
+                <div style={{ fontSize: 18, fontWeight: 800, color: t.TXT, fontFamily: 'Georgia,serif', marginBottom: 4 }}>Dr. Debashis Das</div>
+                <div style={{ ...t.mono, fontSize: 9, color: t.A, letterSpacing: '0.1em', marginBottom: 2 }}>CONSULTANT PHYSICIAN & DIABETOLOGIST</div>
+                <div style={{ ...t.mono, fontSize: 9, color: t.MONOMUTED, letterSpacing: '0.08em', marginBottom: 2 }}>MBBS · MD (Pharmacology) AIIMS · PGP Diabetology (USA) · MBA (UK)</div>
+                <div style={{ ...t.mono, fontSize: 9, color: t.MONOMUTED, letterSpacing: '0.08em' }}>Medicare Hospital, Marol Naka (next to HP Petrol Pump)</div>
               </div>
-              {[{ heading: 'PRACTICE', links: [['About', '/about'], ['Services', '/services/diabetology'], ['Credentials', '/about']] }, { heading: 'CONDITIONS', links: [['Diabetes', '/conditions/diabetes'], ['Metabolic', '/conditions/metabolic-disorders'], ['Hypertension', '/conditions/hypertension']] }, { heading: 'CONSULT', links: [['Book a Session', '/book'], ['Articles', '/articles'], ['Privacy Policy', '/']] }].map(({ heading, links }) => (
+              {[
+                { heading: 'PRACTICE',    links: [['About', '/about'], ['Services', '/services/diabetology'], ['Credentials', '/about']] },
+                { heading: 'CONDITIONS',  links: [['Diabetes', '/conditions/diabetes'], ['Metabolic', '/conditions/metabolic-disorders'], ['Hypertension', '/conditions/hypertension']] },
+                { heading: 'CONSULT',     links: [['Book a Session', '/book'], ['Articles', '/articles'], ['Privacy Policy', '/']] },
+              ].map(({ heading, links }) => (
                 <div key={heading}>
                   <div style={{ ...t.mono, fontSize: 9, color: t.MONOCOLOR, letterSpacing: '0.2em', marginBottom: 14 }}>{heading}</div>
-                  {links.map(([l, href]) => (<Link key={l} href={href} style={{ display: 'block', fontSize: 12, color: t.TXT2, marginBottom: 8, textDecoration: 'none' }}>{l}</Link>))}
+                  {links.map(([l, href]) => (
+                    <Link key={l} href={href} style={{ display: 'block', fontSize: 12, color: t.TXT2, marginBottom: 8, textDecoration: 'none' }}>{l}</Link>
+                  ))}
                 </div>
               ))}
             </div>
             <div style={{ height: 1, background: t.BORDER, marginBottom: 24 }} />
-            <div style={{ ...t.mono, fontSize: 9, color: t.MONOMUTED, letterSpacing: '0.1em', textAlign: 'center' }}>© 2025 DR. DEBASHIS DAS · ALL RIGHTS RESERVED · SECURE · EVIDENCE-BASED · PRIVATE</div>
+            <div style={{ ...t.mono, fontSize: 9, color: t.MONOMUTED, letterSpacing: '0.1em', textAlign: 'center' }}>
+              © 2025 DR. DEBASHIS DAS · MEDICARE HOSPITAL · MAROL NAKA · ALL RIGHTS RESERVED
+            </div>
           </div>
         </footer>
       </div>
